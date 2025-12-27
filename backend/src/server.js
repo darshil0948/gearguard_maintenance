@@ -6,6 +6,9 @@ import connectDB from "./config/db.js";
 import assetRoutes from "./routes/assetRoutes.js";
 import maintenanceRoutes from "./routes/maintenanceRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
+import equipmentRoutes from "./routes/equipmentRoutes.js";
+import teamRoutes from "./routes/teamRoutes.js";
+import requestRoutes from "./routes/requestRoutes.js";
 
 dotenv.config();
 connectDB();
@@ -17,6 +20,9 @@ app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/assets", assetRoutes);
 app.use("/api/maintenance", maintenanceRoutes);
+app.use("/api/equipment", equipmentRoutes);
+app.use("/api/teams", teamRoutes);
+app.use("/api/requests", requestRoutes);
 
 app.listen(process.env.PORT, () =>
   console.log(`Server running on port ${process.env.PORT}`)
