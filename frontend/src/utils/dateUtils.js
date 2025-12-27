@@ -1,12 +1,6 @@
-// Format date to readable string
-export const formatDate = (date) => {
-  if (!date) return "";
-  return new Date(date).toLocaleDateString("en-IN");
-};
+export const validatePassword = (password) => {
+  const regex =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9]).{8,}$/;
 
-// Add days to a date
-export const addDays = (date, days) => {
-  const result = new Date(date);
-  result.setDate(result.getDate() + days);
-  return result;
+  return regex.test(password);
 };

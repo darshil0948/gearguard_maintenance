@@ -1,10 +1,11 @@
-import Assets from "./Assets";
-
-export default function Dashboard() {
+export default function Dashboard({ user }) {
   return (
-    <div>
-      <h1>GearGuard Dashboard</h1>
-      <Assets />
+    <div className="container">
+      <div className="card">
+        <h2>Welcome</h2>
+        <p>Hello, {user.name || user.email}</p>
+        <p>Main project features will start here.</p>
+      </div>
     </div>
   );
 }

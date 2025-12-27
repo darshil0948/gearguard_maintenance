@@ -1,22 +1,29 @@
 import User from "../models/user.js";
 
-// Register User
-export const registerUser = async (req, res) => {
-  try {
-    const user = await User.create(req.body);
-    res.status(201).json(user);
-  } catch (err) {
-    res.status(400).json({ error: err.message });
+// REGISTER
+export const register = async (req, res) => {
+  const { name, email, password } = req.body;
+
+  const exists = await User.findOne({ email });
+  if (exists) {
+    return res.status(400).json({ message: "Email already exists" });
   }
+
+  const user = await User.create({ name, email, password });
+  res.status(201).json(user);
 };
 
-// Login User (simple hackathon auth)
-export const loginUser = async (req, res) => {
+// LOGIN
+export const login = async (req, res) => {
   const { email, password } = req.body;
 
-  const user = await User.findOne({ email, password });
+  const user = await User.findOne({ email });
   if (!user) {
-    return res.status(401).json({ message: "Invalid credentials" });
+    return res.status(404).json({ message: "Account not exist" });
+  }
+
+  if (user.password !== password) {
+    return res.status(401).json({ message: "Invalid Password" });
   }
 
   res.json(user);
