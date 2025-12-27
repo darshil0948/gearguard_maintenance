@@ -1,14 +1,11 @@
-export default function InputField({ placeholder, type = "text", onChange }) {
+export default function InputField({ placeholder, type = "text", onChange, value = "", className = "input" }) {
   return (
     <input
+      className={className}
       type={type}
       placeholder={placeholder}
+      value={value}
       onChange={onChange}
-      style={{
-        padding: "8px",
-        margin: "6px 0",
-        width: "100%"
-      }}
     />
   );
 }

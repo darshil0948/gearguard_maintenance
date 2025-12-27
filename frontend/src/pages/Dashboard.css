@@ -1,0 +1,202 @@
+/* Professional Dashboard Styles - Enhanced */
+.dashboard-container {
+  padding: var(--spacing-lg) 0;
+  min-height: auto;
+  display: block;
+  padding-top: var(--spacing-xl);
+  padding-bottom: var(--spacing-xl);
+  background: var(--bg);
+}
+
+.dashboard-main {
+  max-width: 1200px;
+  width: 100%;
+  padding: var(--spacing-xl);
+  margin: 0 auto;
+  background: var(--card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border-light);
+}
+
+.dashboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-xl);
+  gap: var(--spacing-xl);
+  padding-bottom: var(--spacing-lg);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+}
+
+.stat-card {
+  padding: var(--spacing-xl);
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, #ffffff 0%, #fafbfc 100%);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.stat-card:hover {
+  box-shadow: var(--shadow);
+  transform: translateY(-2px);
+}
+
+.stat-card h3 {
+  font-size: var(--font-size-sm);
+  color: var(--muted);
+  margin: 0;
+  font-weight: var(--font-weight-medium);
+}
+
+.stat-value {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin-top: var(--spacing-sm);
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--spacing-xl);
+}
+
+.panel {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-light);
+  transition: var(--transition);
+}
+
+.panel:hover {
+  box-shadow: var(--shadow);
+}
+
+.panel h4 {
+  margin: 0 0 var(--spacing-md) 0;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+}
+
+.assets-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+}
+
+.recent-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.recent-item {
+  padding: var(--spacing-md);
+  border-radius: var(--radius);
+  border: 1px solid var(--border-light);
+  margin-bottom: var(--spacing-sm);
+  background: var(--card);
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.recent-item:hover {
+  background: var(--card-hover);
+  box-shadow: var(--shadow-sm);
+  transform: translateX(2px);
+}
+
+.recent-item.overdue {
+  border-left: 4px solid var(--danger);
+  background: var(--danger-light);
+}
+
+.overview-actions {
+  display: flex;
+  gap: var(--spacing-sm);
+  align-items: center;
+}
+
+/* Maintenance Panel */
+.maintenance-panel {
+  margin-top: var(--spacing-lg);
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border-light);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-main {
+    padding: var(--spacing-lg);
+  }
+
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: var(--spacing-md) 0;
+  }
+
+  .dashboard-main {
+    padding: var(--spacing-md);
+    border-radius: var(--radius);
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .overview-actions {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-header {
+    text-align: center;
+  }
+
+  .panel {
+    padding: var(--spacing-md);
+  }
+
+  .stat-card {
+    padding: var(--spacing-md);
+  }
+}

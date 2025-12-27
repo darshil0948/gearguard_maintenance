@@ -1,33 +1,15 @@
-import { useEffect, useState } from "react";
-import { api } from "../services/api";
-
-export default function Maintenance({ asset }) {
-  const [records, setRecords] = useState([]);
-  const [cost, setCost] = useState("");
-
-  useEffect(() => {
-    api.getMaintenance(asset._id).then(setRecords);
-  }, [asset]);
-
-  const addRecord = async () => {
-    await api.addMaintenance({
-      assetId: asset._id,
-      serviceType: "Service",
-      cost
-    });
-    setRecords(await api.getMaintenance(asset._id));
-  };
-
+export default function MaintenanceTable({ records = [], asset }) {
   return (
     <div>
-      <h4>Maintenance for {asset.name}</h4>
-      <input placeholder="Cost" onChange={e => setCost(e.target.value)} />
-      <button onClick={addRecord}>Add</button>
-
+      <h4>Maintenance for {asset?.name || 'Asset'}</h4>
       <ul>
-        {records.map(r => (
-          <li key={r._id}>₹{r.cost}</li>
-        ))}
+        {records.length === 0 ? (
+          <li className="muted">No maintenance records</li>
+        ) : (
+          records.map((r) => (
+            <li key={r._id}>₹{Number(r.cost || 0).toFixed(2)} — {new Date(r.serviceDate || r.createdAt || Date.now()).toLocaleDateString()}</li>
+          ))
+        )}
       </ul>
     </div>
   );

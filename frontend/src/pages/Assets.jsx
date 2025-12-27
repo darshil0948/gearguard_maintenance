@@ -4,6 +4,7 @@ import AssetCard from "../components/AssetCard";
 import InputField from "../components/InputField";
 import Button from "../components/Button";
 import Maintenance from "./Maintenance";
+import Page from "../components/Page";
 
 export default function Assets() {
   const [assets, setAssets] = useState([]);
@@ -22,26 +23,23 @@ export default function Assets() {
   };
 
   return (
-    <div>
-      <h3>Assets</h3>
+    <Page title="Assets">
+      <div className="card card-hover" style={{ maxWidth: 720, marginBottom: 12 }}>
+        <div style={{ display: 'flex', gap: 8 }}>
+          <InputField placeholder="Asset name" value={name} onChange={e => setName(e.target.value)} />
+          <Button variant="primary" onClick={addAsset}>Add Asset</Button>
+        </div>
+      </div>
 
-      <InputField
-        placeholder="Asset name"
-        onChange={e => setName(e.target.value)}
-      />
-      <Button text="Add Asset" onClick={addAsset} />
-
-      <div>
+      <div style={{ display: 'grid', gap: 12 }}>
         {assets.map(asset => (
-          <AssetCard
-            key={asset._id}
-            asset={asset}
-            onSelect={setSelectedAsset}
-          />
+          <div key={asset._id} className="card card-hover">
+            <AssetCard asset={asset} onSelect={setSelectedAsset} />
+          </div>
         ))}
       </div>
 
-      {selectedAsset && <Maintenance asset={selectedAsset} />}
-    </div>
+      {selectedAsset && <section className="panel maintenance-panel"><Maintenance asset={selectedAsset} /></section>}
+    </Page>
   );
 }

@@ -1,18 +1,8 @@
-export default function Button({ text, onClick }) {
+export default function Button({ text, children, onClick, variant = "primary", className = "" }) {
+  const cls = `btn btn-${variant} ${className}`.trim();
   return (
-    <button
-      onClick={onClick}
-      style={{
-        padding: "8px 16px",
-        margin: "6px 0",
-        backgroundColor: "#2563eb",
-        color: "white",
-        border: "none",
-        borderRadius: "4px",
-        cursor: "pointer"
-      }}
-    >
-      {text}
+    <button className={cls} onClick={onClick}>
+      {children || text}
     </button>
   );
 }
